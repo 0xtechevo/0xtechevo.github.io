@@ -4,15 +4,10 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Welcome to 'Technical Evolution' – a voyage to evolving technical knowledge and understanding.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Thanks for checking out my blog, where I aim to try explore various computer security related topics, 
+expanding my knowledge and hopefully yours too.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+If you have any constructive feedback feel free to send me a message on [Twitter](https://twitter.com/techevo_)
 
-
-[jekyll-organization]: https://github.com/jekyll
