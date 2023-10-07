@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Welcome to 'Technical Evolution' – a voyage to evolving technical knowledge and understanding.
+Welcome to 'Technical Evolution' – a voyage, evolving technical knowledge and trade craft.
 
-My name is Simon and I currently work as a Senior Threat Hunter, creating detection rules and conducting intrusion analysis.
+I'm Simon currently working as a Senior Threat Hunter.
+My day to day generally involves security research, detection engineering and conducting intrusion analysis.
 
-Thanks for checking out my blog, where I aim to explore various computer security related topics, 
-expanding my knowledge and hopefully yours too.
+I'll be using this blog to cover a variety of personal research topics.
 
 If you have any constructive feedback, feel free to send me a message on [Twitter](https://twitter.com/techevo_)
 
