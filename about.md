@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Welcome to 'Technical Evolution' – a voyage, evolving technical knowledge and trade craft.
+Welcome to 'Technical Evolution' – evolving technical knowledge and trade craft.
 
 I'm Simon currently working as a Senior Threat Hunter.
 My day to day generally involves security research, detection engineering and conducting intrusion analysis.

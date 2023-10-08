@@ -1,12 +1,12 @@
 title: TECHNICAL EVOLUTION
 author:
   name: techevo
-  email: root@localhost
+  email: simon@techevo.uk
 
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
 description: >
-  Welcome to 'Technical Evolution' – a voyage to evolving technical knowledge and understanding.
+  Welcome to 'Technical Evolution' – evolving technical knowledge and trade craft.
 # Build settings
 
 theme: minima
