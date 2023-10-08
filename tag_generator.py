@@ -3,6 +3,7 @@ import glob
 import os
 
 post_dir = '_posts/'
+post_dir = '_drafts/'
 tag_dir = 'tag/'
 
 file_names = glob.glob(post_dir + '**/*.md', recursive=True)
