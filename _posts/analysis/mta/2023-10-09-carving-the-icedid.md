@@ -211,7 +211,7 @@ There are many web portals and API's available to provide more information about
 Whilst these are good to individual lookups, this approach doesn't scale terribly well.
 
 For demonstration purposes I developed a simple script to query the free API from [ipinfo.io](https://ipinfo.io).
-You can find the script [here](https://github.com/0xtechevo/icedid_pcap_triage_analysis/tree/main/ip_enricher).
+You can find the script [here](https://github.com/0xtechevo/icedid_pcap_triage_analysis/blob/main/scripts/enrich_ip.py).
 
 Using the following command (replace `0000000000` with your access token), we can feed the script a list of IP addresses via the file `ips.txt`.
 
