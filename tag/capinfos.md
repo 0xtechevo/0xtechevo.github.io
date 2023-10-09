@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: jekyll"
-tag: jekyll
+title: "Tag: capinfos"
+tag: capinfos
 robots: noindex
 ---
