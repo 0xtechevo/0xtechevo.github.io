@@ -366,7 +366,7 @@ It looks like there are plenty of other options available, and a 30 day trial. S
 
 <br>
 
-The next file we come to is a `Webex.exe` file. If we take a peek at the signing information using the `osslsigncode` command, we can see the digital signature at least says it was signed my Cisco. I couldn't get any tool to verify this signature. 
+The next file we come to is a `Webex.exe` file. If we take a peek at the signing information using the `osslsigncode` command, we can see the digital signature at least says it was signed by Cisco. I couldn't get any tool to verify this signature. 
 
 ```bash
 $ osslsigncode verify -in Webex.exe 
