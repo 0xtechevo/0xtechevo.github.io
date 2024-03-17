@@ -6,7 +6,8 @@ post_dir = '_posts/'
 post_dir = '_drafts/'
 tag_dir = 'tag/'
 
-file_names = glob.glob(post_dir + '**/*.md', recursive=True)
+file_names = glob.glob('_posts/*.md', recursive=True)
+print(file_names)
 
 tags = set()
 for file in file_names:
