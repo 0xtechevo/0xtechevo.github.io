@@ -114,7 +114,7 @@ _Figure 3_ shows two HTTP requests were sent to the server `72.5.43[.]29`.
 
 The first request is a `HEAD` request, used to retrieve the headers that are then subsequently sent with the following `GET` request.
 
-Following the HTTP stream, it shows the requested resource location (`/data/0f60a3e7baecf2748b1c8183ed37d1e4`) as well as the `User-Agent` string `Microsoft BITS/7.8` indicating that the `BITS` protocol was used.
+Following the HTTP stream, it shows the requested resource location (`/data/0f60a3e7baecf2748b1c8183ed37d1e4`) as well as the `User-Agent` string `Microsoft BITS/7.8` indicating that the BITS protocol was used.
 
 In the reply, we can see a status of `200 OK` and a value `159232` referring to the resource size in bytes.
 
@@ -290,7 +290,7 @@ _Figure 11: Wireshark DNS and TLS connection to C2_
 We also cannot determine soley from the evidence we have in the PCAP how the execution proceeds. 
 For this I reccomend checking out a blog from **Elastic**, titled [Dipping Into Danger](https://www.elastic.co/security-labs/dipping-into-danger), which shows the same~ish infection chain from an EDR perspective.
 
-We identified earlier that `BITS` was used to retrieve a DLL file, and this aligns with the reporting from **Elastic**.
+We identified earlier that BITS was used to retrieve a DLL file, and this aligns with the reporting from **Elastic**.
 
 Reviewing the [Any.Run](https://any.run/report/b7aec5f73d2a6bbd8cd920edb4760e2edadc98c3a45bf4fa994d47ca9cbd02f6/2b69ce82-3661-490d-a22e-169706858a91) sandbox report on the DLL file, we can see that there is execution of `rundll32.exe` from a scheduled job, which from the blog by **Elastic** we know is setup by the malware.
 
