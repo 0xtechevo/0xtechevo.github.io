@@ -1,11 +1,11 @@
 ---
-title: WARMCOOKIE Incident Walkthrough
+title: WARMCOOKIE Incident Walk Through
 tags: ["warmcookie", "malware", "walk-through", "ioc", "pcap", "network"]
 categories: ["analysis", "network"]
 layout: post
 ---
 
-This walk-through will be dissecting a **WARMCOOKIE** infection chain from the perspective of a network packet capture and Suricata alerts.
+This walk through will be dissecting a **WARMCOOKIE** infection chain from the perspective of a network packet capture and Suricata alerts.
 The various artefacts for this incident are kindly provided by [@malware_traffic](https://infosec.exchange/@malware_traffic) and located at [malware-traffic-analysis.net](https://www.malware-traffic-analysis.net/2024/08/15/index.html).
 
 As with previous posts, so grab the PCAP and follow along!
@@ -74,7 +74,7 @@ This incident briefing contained a PCAP file and a set of alerts generated from 
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/2024-08-15-traffic-analysis-exercise-alerts.jpg">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/2024-08-15-traffic-analysis-exercise-alerts.jpg">
 </div>
 _Figure 1: Suricata Alerts_
 
@@ -86,7 +86,7 @@ A quick glance at the alerts highlighted in _Figure 2_, shows they were generate
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/2024-08-15-traffic-analysis-exercise-alerts_1.jpg">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/2024-08-15-traffic-analysis-exercise-alerts_1.jpg">
 </div>
 _Figure 2: Suricata Alerts HTTP port 80_
 <br>
@@ -104,7 +104,7 @@ Using the destination details from the alert, as shown in the Wireshark filter b
 http and ip.src == 10.8.15.133 and tcp.srcport == 49810
 ```
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_request_1.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_request_1.png">
 </div>
 _Figure 3: Wireshark HTTP Requests_
 <br>
@@ -120,7 +120,7 @@ In the reply, we can see a status of `200 OK` and a value `159232` referring to 
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_head_request.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_head_request.png">
 </div>
 _Figure 4: Wireshark HTTP HEAD Request_
 <br>
@@ -130,7 +130,7 @@ _Figure 5_ shows the `GET` request and response, which contains an `MZ` header a
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_get_request.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_get_request.png">
 </div>
 _Figure 5: Wireshark HTTP GET Request_
 <br>
@@ -159,7 +159,7 @@ In order to do that we can widen our scope, using the `Statistics > HTTP > Reque
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_requests_all.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_requests_all.png">
 </div>
 _Figure 6: Wireshark All HTTP Request_
 <br>
@@ -180,7 +180,7 @@ Following the HTTP stream, we can see all the protocol data, shown in _Figure 7_
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_invoice_zip.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_invoice_zip.png">
 </div>
 _Figure 7: Wireshark HTTP Invoice Zip_
 <br>
@@ -224,7 +224,7 @@ This Javascript file was also uploaded to [Any.Run](https://any.run/report/dab98
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/anyrun_sandbox_dns_js.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/anyrun_sandbox_dns_js.png">
 </div>
 _Figure 8: AnyRun Sandbox analysis_
 <br>
@@ -238,7 +238,7 @@ Although the sandbox was not able to resolve the IP address, we can use the filt
 dns.qry.name == business.checkfedexexp.com and dns.a
 ```
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_dns_a.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_dns_a.png">
 </div>
 _Figure 9: Wireshark DNS answers_
 <br>
@@ -255,7 +255,7 @@ grep -F -e "business.checkfedexexp.com" Invoice-876597035-003-8331775-8334138.js
 ```
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/grep_js_obfuscated.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/grep_js_obfuscated.png">
 </div>
 _Figure 10: Grep obfuscated Javascript_
 <br>
@@ -281,7 +281,7 @@ ip.dst == 172.67.170.159 or dns.a == 172.67.170.159 and !icmp
 ```
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_dns_tls_cloudflare_connection.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_dns_tls_cloudflare_connection.png">
 </div>
 _Figure 11: Wireshark DNS and TLS connection to C2_
 <br>
@@ -296,7 +296,7 @@ Reviewing the [Any.Run](https://any.run/report/b7aec5f73d2a6bbd8cd920edb4760e2ed
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/anyrun_execute_dll_files.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/anyrun_execute_dll_files.png">
 </div>
 _Figure 13: At job DLL execution_
 <br>
@@ -306,7 +306,7 @@ The `rundll32.exe` process communicates with an IPv4 address `72.5.43[.]29:80`, 
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/2024-08-15-traffic-analysis-exercise-alerts_2.jpg">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/2024-08-15-traffic-analysis-exercise-alerts_2.jpg">
 </div>
 _Figure 14: Suricata Alerts HTTP_
 <br>
@@ -353,7 +353,7 @@ http and http.request.method == POST and ip.dst == 72.5.43.29 and tcp.srcport ==
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_post_1.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_post_1.png">
 </div>
 _Figure 15: HTTP POST Request from rundll32.exe_
 <br>
@@ -383,7 +383,7 @@ The traffic begins with a `GET` to the document root `/`, with the server return
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_get_post.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_get_post.png">
 </div>
 _Figure 16: Wireshark HTTP Command and Control_
 <br>
@@ -408,7 +408,7 @@ _Figure 17_ shows a higher level overview of the communication to the C2 IPv4 ad
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/wireshark_http_c2.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/wireshark_http_c2.png">
 </div>
 _Figure 17: Wireshark HTTP Command and Control_
 <br>
@@ -424,7 +424,7 @@ Using [shodan.io](https://www.shodan.io/host/72.5.43.29#80), it shows the same r
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/shodan_io_http_bad_request.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/shodan_io_http_bad_request.png">
 </div>
 _Figure 18: Google Web crawler Cache of C2 Domain_
 <br>
@@ -437,7 +437,7 @@ http.html_hash:-63667798
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/Shodan_Search_Engine.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/Shodan_Search_Engine.png">
 </div>
 _Figure 19: Shodan Report_
 <br>
@@ -448,7 +448,7 @@ The Shodan report on the C2 IPv4 address list various details, including a domai
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/shodan_io_c2_ip_details.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/shodan_io_c2_ip_details.png">
 </div>
 _Figure 20: Shodan C2 IPv4 Details_
 <br>
@@ -461,7 +461,7 @@ Whilst this is not a smoking gun of any custom C2 infrastructure, it may or may 
 
 <br>
 <div align="center" style="border: thin solid black">
-  <img src="/assets/img/mta/warmcookie_incident_walkthrough/google_cache_c2_domain.png">
+  <img src="/assets/img/mta/warmcookie_incident_walk_through/google_cache_c2_domain.png">
 </div>
 _Figure 21: Google Web crawler Cache of C2 Domain_
 <br>
