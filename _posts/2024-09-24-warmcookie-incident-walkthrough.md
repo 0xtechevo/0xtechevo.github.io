@@ -1,11 +1,11 @@
 ---
 title: WARMCOOKIE Incident Walkthrough
-tags: ["warmcookie", "malware", "walkthrough", "ioc", "pcap", "network"]
+tags: ["warmcookie", "malware", "walk-through", "ioc", "pcap", "network"]
 categories: ["analysis", "network"]
 layout: post
 ---
 
-This walkthrough will be dissecting a **WARMCOOKIE** infection chain from the perspective of a network packet capture and Suricata alerts.
+This walk-through will be dissecting a **WARMCOOKIE** infection chain from the perspective of a network packet capture and Suricata alerts.
 The various artefacts for this incident are kindly provided by [@malware_traffic](https://infosec.exchange/@malware_traffic) and located at [malware-traffic-analysis.net](https://www.malware-traffic-analysis.net/2024/08/15/index.html).
 
 As with previous posts, so grab the PCAP and follow along!
@@ -272,7 +272,7 @@ I attempted to de-obfuscate using the AMSI[^4] tracing mechanism, outlined by "*
 <br>
 <br>
 
-Whilst the sandbox does not show the network connection, likely due to resolution issues, we can see there was a network connection following the DNS answer to one of the IP addresses `172.67.170[.]159` using a secure TLS connection. Due to the secure wrapping on the connection we cannot see the underlying HTTP requests and any respnses.
+Whilst the sandbox does not show the network connection, likely due to resolution issues, we can see there was a network connection following the DNS answer to one of the IP addresses `172.67.170[.]159` using a secure TLS connection. Due to the secure wrapping on the connection we cannot see the underlying HTTP requests and any responses.
 
 You can see this combination of events in the PCAP using the following Wireshark filter, and the results in _Figure 11_.
 
@@ -287,8 +287,8 @@ _Figure 11: Wireshark DNS and TLS connection to C2_
 <br>
 <br>
 
-We also cannot determine soley from the evidence we have in the PCAP how the execution proceeds. 
-For this I reccomend checking out a blog from **Elastic**, titled [Dipping Into Danger](https://www.elastic.co/security-labs/dipping-into-danger), which shows the same~ish infection chain from an EDR perspective.
+We also cannot determine entirely from the evidence we have in the PCAP how the execution proceeds. 
+For this I recommend checking out a blog from **Elastic**, titled [Dipping Into Danger](https://www.elastic.co/security-labs/dipping-into-danger), which shows the same~ish infection chain from an EDR perspective.
 
 We identified earlier that BITS was used to retrieve a DLL file, and this aligns with the reporting from **Elastic**.
 
@@ -457,7 +457,7 @@ _Figure 20: Shodan C2 IPv4 Details_
 Google very helpfully stores and makes available cache information when its crawlers visit domains.
 If we take a look at the [results](https://webcache.googleusercontent.com/search?q=cache:checking-bots.site) for this domain, _Figure 21_ shows that at some stage a Python Flask web application was in use. This can be, and is commonly used alongside NGINX to provide a dynamic server side application.
 
-Whilst this is not a smoking gun of any custom C2 infrastructure, it may or may not provide some insight into the C2 backend.
+Whilst this is not a smoking gun of any custom C2 infrastructure, it may or may not provide some insight into the C2 back-end.
 
 <br>
 <div align="center" style="border: thin solid black">
@@ -470,7 +470,7 @@ _Figure 21: Google Web crawler Cache of C2 Domain_
 
 ## Conclusion
 
-In this post we walked through how to triage and pivot on the infection chain for WARMCOOKIE, working backwards to the initial acess all the way through to identifying the final command and control channel and profiling the attackers infrastructure.
+In this post we walked through how to triage and pivot on the infection chain for WARMCOOKIE, working backwards to the initial access all the way through to identifying the final command and control channel and profiling the attackers infrastructure.
 
 If you enjoyed this post, pleas feel free to let me know either on [twitter](https://x.com/techevo_) or various Discord servers.
 
