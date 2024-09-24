@@ -8,7 +8,7 @@ layout: post
 This walkthrough will be dissecting a **WARMCOOKIE** infection chain from the perspective of a network packet capture and Suricata alerts.
 The various artefacts for this incident are kindly provided by [@malware_traffic](https://infosec.exchange/@malware_traffic) and located at [malware-traffic-analysis.net](https://www.malware-traffic-analysis.net/2024/08/15/index.html).
 
-As with previous posts, I will be trying to make it easy to follow along, so grab the PCAP and load it up into Wireshark!
+As with previous posts, so grab the PCAP and follow along!
 <br>
 
 ---
