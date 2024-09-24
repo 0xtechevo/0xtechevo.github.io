@@ -8,14 +8,14 @@ layout: post
 This walkthrough will be dissecting a **WARMCOOKIE** infection chain from the perspective of a network packet capture and Suricata alerts.
 The various artefacts for this incident are kindly provided by [@malware_traffic](https://infosec.exchange/@malware_traffic) and located at [malware-traffic-analysis.net](https://www.malware-traffic-analysis.net/2024/08/15/index.html).
 
-As with previous posts, I will be trying to make it relatively easy to follow along, so grab the PCAP and load it up into Wireshark!
+As with previous posts, I will be trying to make it easy to follow along, so grab the PCAP and load it up into Wireshark!
 <br>
 
 ---
 
 ## Summary
 
-For those that want to shortcut the process, here is a brief summary and details of TTP's mapped to the MITRE<sup>&reg;</sup> ATT&CK Framework.
+For those that want to shortcut the process, here is a brief summary and details of TTP's mapped to the MITRE ATT&CK<sup>&reg;</sup> Framework.
 
 - A zip archive containing a JavaScript file was downloaded by the user using a web browser.
 - Executing the JavaScript file downloaded a second stage DLL file.
