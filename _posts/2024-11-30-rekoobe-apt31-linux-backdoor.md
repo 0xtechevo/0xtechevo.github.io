@@ -326,7 +326,7 @@ This function contains more capabilities to copy and rename itself based on the 
 
 From the `main` function, `fcn.00404415` is called which performs some value checks before calling `fcn.0040225c`.
 
-The start of the function builds the same stack string `r0st@#$` as previously seen, and calls the same RC4 wrapper. The input length is stored at `0x6144e0` and contains decimal 42. 
+The start of the function builds the same stack string `r0st@#$` as previously seen, and calls the same RC4 wrapper. The input length is stored at `0x6144e0` and contains decimal **42**. 
 
 The 42 bytes of input is located at `0x6144e2`, again in the `.data` section.
 
@@ -408,15 +408,19 @@ _Figure 11_ shows the output of `ltrace` revealing the configuration strings.
 </div>
 _Figure 11: ltrace decrypt configuration._
 
+<br>
 
 _Figure 12_ shows the various files being opened to gather information regarding the host.
 It also shows a call to the `socket` and `bind` functions, indicating a listing port being established.
+
+<br>
 
 <div align="center" style="border: thin solid black">
   <img src="/assets/img/malware/rekoobe/ltrace_recon_network.png">
 </div>
 _Figure 12: ltrace decrypt configuration._
 
+<br>
 
 The dynamic analysis confirms the findings from the static analysis.
 
