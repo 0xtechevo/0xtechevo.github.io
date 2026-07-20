@@ -1,2 +1,363 @@
-// Placeholder to allow defining custom styles that override everything else.
-// (Use `_sass/minima/custom-variables.scss` to override variable defaults)
+// === Theme Toggle Button ===
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin-right: 12px;
+  vertical-align: middle;
+  line-height: 0;
+  border-radius: 50%;
+  color: var(--minima-text-color, #bbb);
+  transition: color 0.2s, background 0.2s;
+
+  &:hover {
+    color: var(--minima-link-base-color, #79b8ff);
+    background: rgba(128, 128, 128, 0.1);
+  }
+
+  .svg-icon {
+    fill: currentColor;
+  }
+}
+
+// Show sun (light icon) in dark mode, moon (dark icon) in light mode
+:root[data-theme="dark"]  #theme-icon-light { display: inline-block; }
+:root[data-theme="dark"]  #theme-icon-dark  { display: none; }
+:root[data-theme="light"] #theme-icon-light { display: none; }
+:root[data-theme="light"] #theme-icon-dark  { display: inline-block; }
+
+
+// === Global & Typography ===
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+// Smooth transitions for all theme-aware elements
+.site-header, .site-footer, .post-list li, .post-header, .post-content h2, .tag-page-list li, code.highligher-rouge {
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.wrapper {
+  max-width: 840px;
+}
+
+::selection {
+  background: var(--minima-link-base-color, #79b8ff);
+  color: #fff;
+}
+
+
+// === Site Header ===
+
+.site-header {
+  border-top: none;
+  border-bottom: 1px solid var(--minima-border-color-01, #333);
+  min-height: 64px;
+  line-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+// Dynamic header background based on theme
+:root[data-theme="dark"] .site-header {
+  background: rgba(24, 24, 24, 0.92);
+}
+
+:root[data-theme="light"] .site-header {
+  background: rgba(253, 253, 253, 0.92);
+}
+
+// Fallback for prefers-color-scheme
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .site-header {
+    background: rgba(24, 24, 24, 0.92);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .site-header {
+    background: rgba(253, 253, 253, 0.92);
+  }
+}
+
+.site-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  float: none;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.site-nav {
+  background: none;
+  border: none;
+  top: 0;
+  right: 0;
+  line-height: 64px;
+
+  .page-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--minima-text-color, #bbb);
+    padding: 4px 12px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: var(--minima-link-base-color, #79b8ff);
+      background: rgba(128, 128, 128, 0.08);
+      text-decoration: none;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    float: right;
+
+    .page-link {
+      display: inline;
+      padding: 4px 12px;
+
+      &:not(:last-child) {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+
+// === Post List (Home Page) ===
+
+.post-list {
+  > li {
+    margin-bottom: 24px;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--minima-border-color-01, #333);
+    background: rgba(128, 128, 128, 0.04);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+
+    &:hover {
+      border-color: var(--minima-border-color-02, #666);
+      background: rgba(128, 128, 128, 0.06);
+    }
+  }
+}
+
+.post-meta {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--minima-brand-color, #999);
+  margin-bottom: 6px;
+}
+
+.post-link {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--minima-text-color, #bbb);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--minima-link-base-color, #79b8ff);
+    text-decoration: none;
+  }
+}
+
+.post-list .post-excerpt {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--minima-text-color, #bbb);
+  opacity: 0.8;
+}
+
+
+// === Post Page ===
+
+.post-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--minima-border-color-01, #333);
+}
+
+.post-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.post-content {
+  font-size: 1.05rem;
+  line-height: 1.75;
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 40px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--minima-border-color-01, #333);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 32px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  pre, code {
+    font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Menlo", "Consolas", monospace;
+    font-size: 0.875rem;
+  }
+
+  pre {
+    border-radius: 8px;
+    padding: 16px 20px;
+    border: 1px solid var(--minima-border-color-01, #333);
+    background: var(--minima-code-background-color, #212121);
+    overflow-x: auto;
+  }
+
+  code {
+    background: var(--minima-code-background-color, #212121);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  img {
+    border-radius: 8px;
+    border: 1px solid var(--minima-border-color-01, #333);
+  }
+
+  blockquote {
+    border-left: 3px solid var(--minima-link-base-color, #79b8ff);
+    padding-left: 20px;
+    color: var(--minima-text-color, #bbb);
+    opacity: 0.85;
+  }
+}
+
+
+// === Tags ===
+
+.post-header span[style] {
+  display: block;
+  margin-top: 12px;
+}
+
+code.highligher-rouge,
+a code.highligher-rouge {
+  background: var(--minima-code-background-color, #212121);
+  border: 1px solid var(--minima-border-color-01, #333);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: var(--minima-link-base-color, #79b8ff);
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: var(--minima-link-base-color, #79b8ff);
+    background: rgba(121, 184, 255, 0.1);
+  }
+}
+
+
+// === Site Footer ===
+
+.site-footer {
+  border-top: 1px solid var(--minima-border-color-01, #333);
+  padding: 32px 0;
+  font-size: 0.875rem;
+}
+
+.footer-col-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 200px;
+}
+
+.social-media-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+
+  li {
+    float: none;
+    margin: 0;
+
+    a {
+      border: 1px solid var(--minima-border-color-01, #333);
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: border-color 0.2s, background 0.2s;
+
+      &:hover {
+        border-color: var(--minima-link-base-color, #79b8ff);
+        background: rgba(121, 184, 255, 0.08);
+      }
+    }
+  }
+}
+
+
+// === Tag Pages ===
+
+.tag-page-list {
+  list-style: none;
+  margin-left: 0;
+
+  > li {
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--minima-border-color-01, #333);
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: var(--minima-border-color-02, #666);
+    }
+  }
+}

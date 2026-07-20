@@ -1,6 +1,37 @@
-{% comment %}
-  Placeholder to allow defining custom head, in principle, you can add anything here, e.g. favicons:
+<script>
+  (function() {
+    var theme = localStorage.getItem('theme');
+    if (theme !== 'dark' && theme !== 'light') {
+      theme = 'dark';
+      localStorage.setItem('theme', 'dark');
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
 
-  1. Head over to https://realfavicongenerator.net/ to add your own favicons.
-  2. Customize default _includes/custom-head.html in your source directory and insert the given code snippet.
-{% endcomment %}
+  function toggleTheme() {
+    var html = document.documentElement;
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    
+    // Add transition class for smooth animation
+    html.classList.add('theme-transitioning');
+    
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    
+    // Remove transition class after animation completes
+    setTimeout(function() {
+      html.classList.remove('theme-transitioning');
+    }, 350);
+  }
+</script>
+
+<style>
+  /* Smooth theme transition */
+  :root.theme-transitioning,
+  :root.theme-transitioning *,
+  :root.theme-transitioning *::before,
+  :root.theme-transitioning *::after {
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+  }
+</style>
